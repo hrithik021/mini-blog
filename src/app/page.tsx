@@ -12,7 +12,7 @@ export default async function HomePage() {
   return (
     <main className="bg-gray-50 min-h-screen p-8">
 
-      <h1 className="text-6xl font-extrabold mb-12 text-gray-900">
+      <h1 className="text-5xl font-extrabold mb-12 tracking-tight text-gray-900 hover:text-pink-600 transition-colors text-gray-900" >
         Mini Blog
       </h1>
 
