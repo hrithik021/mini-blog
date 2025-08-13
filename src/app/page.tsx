@@ -1,51 +1,76 @@
 import Link from "next/link";
 import axios from "axios";
 
-export const revalidate = false; 
+export const revalidate = false;
 
 export default async function HomePage() {
-
-  const postsRes = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=3");
+  const postsRes = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts?_limit=6"
+  );
   const posts = postsRes.data;
 
   return (
-    <section className="text-center py-20">
+    <main className="bg-gray-50 min-h-screen p-8">
 
-      <h1 className="text-4xl font-bold mb-4">Welcome to Mini Blog</h1>
-      <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-        A minimal blog built with Next.js App Router, Tailwind CSS, and Axios. Browse posts, view details, and read
-        comments.
-      </p>
+      <h1 className="text-6xl font-extrabold mb-12 text-gray-900">
+        Mini Blog
+      </h1>
 
 
-      <section className="min-h-screen bg-gradient-to-b from-green-50 to-white bg-[url('/arc-pattern.svg')] bg-no-repeat bg-top bg-cover p-6 rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-green-700">Latest Posts</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post: any) => (
-            <Link
-              key={post.id}
-              href={`/posts/${post.id}`}
-              className="block rounded-xl border bg-white p-6 shadow-sm hover:shadow-lg transition-shadow hover:-translate-y-1 transform"
-            >
-              <h3 className="text-lg font-semibold text-gray-700 hover:text-black transition-colors mb-2">
-                {post.title}
-              </h3>
-              <p className="text-gray-600">
-                {post.body.length > 100 ? post.body.slice(0, 100) + "…" : post.body}
-              </p>
-            </Link>
-          ))}
-        </div>
+<div className="grid lg:grid-cols-2 gap-8 mb-16 items-center">
+  <div className="rounded-2xl h-64 sm:h-80 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+    ✨ Featured
+  </div>
+  <div>
+    <p className="text-sm text-gray-500">Maret 05, 2021</p>
+    <Link href={`/posts/${posts[0].id}`}>
+      <h2 className="text-3xl font-bold mt-2 text-black hover:underline">
+        {posts[0].title}
+      </h2>
+    </Link>
+    <p className="mt-4 text-gray-600">
+      {posts[0].body.length > 150
+        ? posts[0].body.slice(0, 150) + "…"
+        : posts[0].body}
+    </p>
+  </div>
+</div>
 
-        <div className="mt-8">
+
+      {/* Other Posts */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.slice(1).map((post: any, idx: number) => (
           <Link
-            href="/posts"
-            className="inline-block px-6 py-2 bg-gray-900 text-white rounded hover:bg-black transition"
+            key={post.id}
+            href={`/posts/${post.id}`}
+            className={`rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition transform p-6 text-white
+              ${idx % 3 === 0
+                ? "bg-gradient-to-r from-blue-400 to-purple-500"
+                : idx % 3 === 1
+                ? "bg-gradient-to-r from-pink-400 to-orange-400"
+                : "bg-gradient-to-r from-green-400 to-teal-500"
+              }`}
           >
-            View All Posts →
+            <p className="text-sm opacity-80 mb-2">Februari {24 + idx}, 2021</p>
+            <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
+            <p className="text-sm opacity-90">
+              {post.body.length > 100
+                ? post.body.slice(0, 100) + "…"
+                : post.body}
+            </p>
           </Link>
-        </div>
-      </section>
-    </section>
+        ))}
+      </div>
+
+      {/* View All Button */}
+      <div className="mt-12 text-center">
+        <Link
+          href="/posts"
+          className="inline-block px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-black transition"
+        >
+          View All Posts →
+        </Link>
+      </div>
+    </main>
   );
 }

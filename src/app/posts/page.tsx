@@ -42,9 +42,11 @@ export default function PostsPage() {
   if (error) return <ErrorState message={error} />;
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-green-50 to-white bg-[url('/arc-pattern.svg')] bg-no-repeat bg-top bg-cover p-6 rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-green-700">Latest Posts</h2>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="min-h-screen bg-gray-50 p-6 rounded-lg">
+      <h2 className="text-3xl font-extrabold mb-8 text-gray-900">
+        Latest Posts
+      </h2>
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((p) => (
           <PostCard
             key={p.id}

@@ -33,3 +33,5 @@ export async function fetchComments(postId: string) {
   const { data } = await api.get<Comment[]>(`/comments`, { params: { postId } });
   return data;
 }
+
+
