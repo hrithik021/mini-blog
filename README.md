@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Blog – Next.js + TypeScript
 
-## Getting Started
+This is a blog application built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**.  
+It fetches posts and users from [JSONPlaceholder API](https://jsonplaceholder.typicode.com) using **Axios**, and displays them with a clean, responsive UI.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- Fetch and display blog posts from an API.
+- Show post title, truncated body, and author name.
+- Individual post pages with comments.
+- **Loading state** with a custom spinner.
+- **Error handling** for failed API calls.
+- Responsive grid layout using Tailwind CSS.
+- Scalable folder structure for components and API services.
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js** – React framework
+- **TypeScript** – Static typing
+- **Tailwind CSS** – Utility-first styling
+- **Axios** – HTTP requests
+- **JSONPlaceholder** – Free fake API for testing
+
+---
+
+## 📂 Project Structure
+
+src/
+├── app/ # Next.js App Router pages
+│ ├── page.tsx # Home page
+│ ├── posts/ # Posts listing and details
+│ └── layout.tsx
+├── components/ # Reusable UI components
+│ ├── Loader.tsx
+│ ├── ErrorState.tsx
+│ └── PostCard.tsx
+├── lib/
+│ └── api.ts # Centralized API calls
+└── styles/ # Global styles
+
+yaml
+Copy
+Edit
+
+---
+
+## ⚡ Getting Started
+
+First, install dependencies:
 
 ```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+Then run the development server:
+
+bash
+Copy
+Edit
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🌐 API Endpoints Used
+GET /posts → Fetch all posts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+GET /users → Fetch all users (for author names)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+GET /posts/:id → Fetch single post
 
-## Learn More
+GET /comments?postId=:id → Fetch comments for a post
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📦 Deployment
+https://uengage-mini-blog.vercel.app/
